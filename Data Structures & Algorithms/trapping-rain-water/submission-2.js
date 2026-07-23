@@ -1,0 +1,29 @@
+class Solution {
+    /**
+     * @param {number[]} height
+     * @return {number}
+     */
+    trap(height) {
+        if (!height || !height.length) return 0;
+        
+        let l = 0
+        let r = height.length - 1
+        let res = 0
+
+        let maxL = height[l]
+        let maxR = height[r]
+
+        while(l < r){
+            if (maxL < maxR) {
+                l++;                
+                maxL = Math.max(maxL,height[l]);
+                res += maxL - height[l];                
+            } else {
+                r--;
+                maxR = Math.max(maxR,height[r]);
+                res += maxR - height[r];
+            }
+        }
+        return res
+    }
+}
